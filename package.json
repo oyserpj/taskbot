@@ -1,0 +1,22 @@
+{
+  "name": "taskbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dc": "node deploy-commands.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.8.0",
+    "dotenv": "^16.0.3",
+    "prettier": "^2.8.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
