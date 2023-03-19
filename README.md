@@ -1,4 +1,4 @@
-##RU Документация по TaskBot
+## Документация по TaskBot RU
 
 Эта документация описывает функциональность Discord-бота, который позволяет создавать задачи в определенных форумах внутри сервера Discord. Бот прослушивает команду "/add", которая принимает два аргумента: "user" и "text".
 
@@ -32,7 +32,7 @@
 
 Как только бот запущен, он будет прослушивать команду "/add" в указанных каналах и создавать темы форума задач на основе предоставленных аргументов.
 
-##EN TaskBot Documentation
+## TaskBot Documentation EN
 
 This documentation covers the functionality of a Discord bot that allows for the creation of tasks in specific forums within a Discord server. The bot listens for the "/add" command, which takes two arguments: "user" and "text".
 
