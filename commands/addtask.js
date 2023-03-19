@@ -81,12 +81,12 @@ module.exports = {
           if (user) {
             if (user.value === "<@247395057924177920>") {
               createTaskThread(meaningTasksChannel);
-            }
-            if (user.value === "<@480775560620933121>") {
+            } else if (user.value === "<@480775560620933121>") {
               createTaskThread(beraTasksChannel);
-            }
-            if (user.value === "<@270556086308700160>") {
+            } else if (user.value === "<@270556086308700160>") {
               createTaskThread(kostochkaTasksChannel);
+            } else {
+              createTaskThread(globalTasksChannel);
             }
           }
         });
