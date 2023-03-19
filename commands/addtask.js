@@ -88,7 +88,6 @@ module.exports = {
             if (user.value === "<@270556086308700160>") {
               createTaskThread(kostochkaTasksChannel);
             }
-            createTaskThread(globalTasksChannel);
           }
         });
     } else {
