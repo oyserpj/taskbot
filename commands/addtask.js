@@ -59,7 +59,6 @@ module.exports = {
           const kostochkaTasksChannel = interaction.guild.channels.cache.get(
             "1087005105720659998"
           );
-          console.log(user.value);
 
           function createTaskThread(taskChannel) {
             taskChannel.threads.create({
