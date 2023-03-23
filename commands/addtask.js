@@ -59,6 +59,9 @@ module.exports = {
           const kostochkaTasksChannel = interaction.guild.channels.cache.get(
             "1087005105720659998"
           );
+          const HornyTasksChannel = interaction.guild.channels.cache.get(
+            "1088391112420499456"
+          );
 
           function createTaskThread(taskChannel) {
             taskChannel.threads.create({
@@ -84,6 +87,8 @@ module.exports = {
               createTaskThread(beraTasksChannel);
             } else if (user.value === "<@270556086308700160>") {
               createTaskThread(kostochkaTasksChannel);
+            } else if (user.value === "<@473800235445911553>") {
+              createTaskThread(HornyTasksChannel);
             } else {
               createTaskThread(globalTasksChannel);
             }
