@@ -77,7 +77,6 @@ module.exports = {
           };
 
           //Создание треда в форуме
-          const channels = require("../channels");
           const channel =
             channels[user?.value] || channels["1086972110523605022"];
           createTaskThread(channel);
