@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const channels = require("../channels");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -46,8 +47,10 @@ module.exports = {
             });
           interaction.channel.send({ embeds: [successResponse] });
 
-          // Создание треда в форуме для нужного пользователя
-          function createTaskThread(taskChannel) {
+          // Функция создания треда в форуме для нужного пользователя, принимает нужный канал
+          function createTaskThread(channelId) {
+            const taskChannel = interaction.guild.channels.cache.get(channelId);
+
             taskChannel.threads.create({
               name: text.value,
               message: {
@@ -61,41 +64,12 @@ module.exports = {
             });
           }
 
-          // Определение пользователей к форумам
-          const channels = {
-            "1086972110523605022": interaction.guild.channels.cache.get(
-              "1086972110523605022"
-            ),
-            "1086971454437998633": interaction.guild.channels.cache.get(
-              "1086971454437998633"
-            ),
-            "1087005148188000319": interaction.guild.channels.cache.get(
-              "1087005148188000319"
-            ),
-            "1087005105720659998": interaction.guild.channels.cache.get(
-              "1087005105720659998"
-            ),
-            "1088391112420499456": interaction.guild.channels.cache.get(
-              "1088391112420499456"
-            ),
-            "<@247395057924177920>": interaction.guild.channels.cache.get(
-              "1086971454437998633"
-            ),
-            "<@480775560620933121>": interaction.guild.channels.cache.get(
-              "1087005148188000319"
-            ),
-            "<@270556086308700160>": interaction.guild.channels.cache.get(
-              "1087005105720659998"
-            ),
-            "<@473800235445911553>": interaction.guild.channels.cache.get(
-              "1088391112420499456"
-            ),
-          };
-
-          //Создание треда в форуме
-          const channel =
-            channels[user?.value] || channels["1086972110523605022"];
-          createTaskThread(channel);
+          // Создание треда в форуме
+          if (user && channels[user.value]) {
+            createTaskThread(channels[user.value]);
+          } else {
+            createTaskThread("1086972110523605022");
+          }
         });
     } else {
       interaction.reply({
