@@ -45,6 +45,22 @@ module.exports = {
               iconURL: interaction.user.avatarURL(),
             });
           interaction.channel.send({ embeds: [successResponse] });
+
+          // Создание треда в форуме для нужного пользователя
+          function createTaskThread(taskChannel) {
+            taskChannel.threads.create({
+              name: text.value,
+              message: {
+                content: `${
+                  user
+                    ? `${user.value} для тебя задачка.\n\n`
+                    : "Общая задачка\n\n"
+                } Подробное описание задачи и дополнительные ресурсы:`,
+              },
+              appliedTags: ["1087010624980123708"],
+            });
+          }
+
           // Определение пользователей к форумам
           const channels = {
             "1086972110523605022": interaction.guild.channels.cache.get(
