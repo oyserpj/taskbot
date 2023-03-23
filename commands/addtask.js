@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-
+const channels = require("../channels");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("add")
@@ -46,53 +46,9 @@ module.exports = {
             });
           interaction.channel.send({ embeds: [successResponse] });
 
-          // Создание таска в форуме
-          const globalTasksChannel = interaction.guild.channels.cache.get(
-            "1086972110523605022"
-          );
-          const meaningTasksChannel = interaction.guild.channels.cache.get(
-            "1086971454437998633"
-          );
-          const beraTasksChannel = interaction.guild.channels.cache.get(
-            "1087005148188000319"
-          );
-          const kostochkaTasksChannel = interaction.guild.channels.cache.get(
-            "1087005105720659998"
-          );
-          const HornyTasksChannel = interaction.guild.channels.cache.get(
-            "1088391112420499456"
-          );
-
-          function createTaskThread(taskChannel) {
-            taskChannel.threads.create({
-              name: text.value,
-              message: {
-                content: `${
-                  user
-                    ? `${user.value} для тебя задачка.\n\n`
-                    : "Общая задачка\n\n"
-                } Подробное описание задачи и дополнительные ресурсы:`,
-              },
-              appliedTags: ["1087010624980123708"],
-            });
-          }
-
-          if (!user) {
-            createTaskThread(globalTasksChannel);
-          }
-          if (user) {
-            if (user.value === "<@247395057924177920>") {
-              createTaskThread(meaningTasksChannel);
-            } else if (user.value === "<@480775560620933121>") {
-              createTaskThread(beraTasksChannel);
-            } else if (user.value === "<@270556086308700160>") {
-              createTaskThread(kostochkaTasksChannel);
-            } else if (user.value === "<@473800235445911553>") {
-              createTaskThread(HornyTasksChannel);
-            } else {
-              createTaskThread(globalTasksChannel);
-            }
-          }
+          const channel =
+            channels[user?.value] || channels["1086972110523605022"];
+          createTaskThread(channel);
         });
     } else {
       interaction.reply({
