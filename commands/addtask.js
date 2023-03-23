@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const channels = require("../channels");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("add")
@@ -46,6 +46,8 @@ module.exports = {
             });
           interaction.channel.send({ embeds: [successResponse] });
 
+          //Создание треда в форуме
+          const channels = require("../channels");
           const channel =
             channels[user?.value] || channels["1086972110523605022"];
           createTaskThread(channel);
