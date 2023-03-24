@@ -20,7 +20,8 @@ const client = new Client({
 // Инициализация команд и бота
 client.once(Events.ClientReady, (client) => {
   console.log(`[TASKBOT]Ready! Logged in as ${client.user.tag}`);
-
+  const mainChannel = client.channels.cache.get("1086967680407457914");
+  mainChannel.send("Updated");
   client.commands = new Collection();
 
   const commandsPath = path.join(__dirname, "commands");
