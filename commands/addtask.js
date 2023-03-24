@@ -32,25 +32,9 @@ module.exports = {
           ephemeral: true,
         })
         .then(() => {
-          const successResponse = new EmbedBuilder()
-            .setColor("#141414")
-            .setTitle("Задачка создана")
-            .setDescription(
-              user
-                ? `Задачка для ${user.value} успешно создана.\n\n**${text.value}**\n\n`
-                : `Общая задачка успешно создана.\n\n**${text.value}**\n\n`
-            )
-            .setTimestamp()
-            .setFooter({
-              text: interaction.user.username,
-              iconURL: interaction.user.avatarURL(),
-            });
-          interaction.channel.send({ embeds: [successResponse] });
-
           // Функция создания треда в форуме для нужного пользователя, принимает нужный канал
           function createTaskThread(channelId) {
             const taskChannel = interaction.guild.channels.cache.get(channelId);
-
             taskChannel.threads.create({
               name: text.value,
               message: {
@@ -70,6 +54,22 @@ module.exports = {
           } else {
             createTaskThread("1086972110523605022");
           }
+
+          // Отправка сообщение о успешном создании задачки
+          const successResponse = new EmbedBuilder()
+            .setColor("#141414")
+            .setTitle("Задачка создана")
+            .setDescription(
+              user
+                ? `Задачка для ${user.value} успешно создана.\n\n**${text.value}**\n\n`
+                : `Общая задачка успешно создана.\n\n**${text.value}**\n\n`
+            )
+            .setTimestamp()
+            .setFooter({
+              text: interaction.user.username,
+              iconURL: interaction.user.avatarURL(),
+            });
+          interaction.channel.send({ embeds: [successResponse] });
         });
     } else {
       interaction.reply({
